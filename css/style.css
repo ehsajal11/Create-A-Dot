@@ -489,15 +489,17 @@ html.dark .pill{ color:#fff; }
   font-size:13.5px; font-weight:700; color:var(--text-soft); transition:.2s;
 }
 .filter-btn.active, .filter-btn:hover{ background:var(--ink); color:#fff; border-color:var(--ink); }
-.project-card{ border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--border); background:var(--bg); }
+.project-card{ border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--border); background:var(--bg); display:flex; flex-direction:column; }
 .project-thumb{
   aspect-ratio:4/3; background:linear-gradient(135deg,var(--ink),var(--blue-2));
   position:relative; display:flex; align-items:flex-end; padding:20px;
 }
 .project-thumb .tag{ background:rgba(255,255,255,.15); color:#fff; border-color:transparent; }
-.project-body{ padding:22px; }
+.project-body{ padding:22px; display:flex; flex-direction:column; gap:10px; flex:1; }
 .project-body h3{ font-size:17.5px; }
-.project-body p{ margin-top:8px; color:var(--text-soft); font-size:14px; }
+.project-body p{ margin:0; color:var(--text-soft); font-size:14px; line-height:1.7; }
+.project-body .result-row{ margin-top:4px; gap:12px; padding:0; }
+.project-body .result{ display:inline-flex; align-items:center; gap:6px; }
 
 /* ---------- Values / process icons row for About ---------- */
 .value-row{ display:flex; gap:16px; align-items:flex-start; padding:20px 0; border-bottom:1px solid var(--border); }
