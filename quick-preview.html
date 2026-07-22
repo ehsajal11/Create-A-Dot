@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Create A Dot — From One Dot to Digital Success</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F172A; --blue:#2563EB; --blue-2:#1d4ed8; --cyan:#22D3EE;
+  --bg:#FFFFFF; --text:#111827; --text-soft:#4b5568;
+  --gray-light:#F8FAFC; --border:#E5E7EB;
+  --font:'Manrope',sans-serif; --mono:'JetBrains Mono',monospace;
+  --radius-lg:22px; --radius-md:14px; --radius-sm:8px;
+  --shadow-sm:0 1px 2px rgba(15,23,42,.05); --shadow-md:0 8px 30px rgba(15,23,42,.08); --shadow-lg:0 24px 60px rgba(15,23,42,.14);
+  --ease:cubic-bezier(.16,.8,.24,1);
+}
+html.dark{ --bg:#0B1220; --text:#E7EBF3; --text-soft:#9aa5b8; --gray-light:#0F172A; --border:#1f2b45; }
+*,*::before,*::after{ box-sizing:border-box; }
+body{ margin:0; font-family:var(--font); background:var(--bg); color:var(--text); transition:background .3s var(--ease), color .3s var(--ease); }
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; margin:0; padding:0; }
+button{ font-family:inherit; cursor:pointer; }
+h1,h2,h3,h4{ margin:0; font-weight:800; letter-spacing:-.02em; line-height:1.08; }
+p{ margin:0; }
+.container{ max-width:1200px; margin:0 auto; padding:0 28px; }
+.eyebrow{ font-family:var(--mono); font-size:12.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--blue); display:inline-flex; align-items:center; gap:8px; }
+.eyebrow::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--cyan); box-shadow:0 0 0 3px rgba(34,211,238,.18); }
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:14px 26px; border-radius:999px; font-weight:700; font-size:15px; border:1px solid transparent; transition:.25s var(--ease); white-space:nowrap; }
+.btn-primary{ background:var(--ink); color:#fff; }
+html.dark .btn-primary{ background:var(--blue); }
+.btn-primary:hover{ transform:translateY(-2px); background:var(--blue); }
+.btn-outline{ background:transparent; color:var(--text); border-color:var(--border); }
+.btn-outline:hover{ border-color:var(--blue); color:var(--blue); transform:translateY(-2px); }
+.btn-cyan{ background:var(--cyan); color:var(--ink); }
+.btn-cyan:hover{ transform:translateY(-2px); }
+.btn-block{ width:100%; }
+.btn-sm{ padding:10px 18px; font-size:14px; }
+.navbar{ position:sticky; top:0; z-index:100; backdrop-filter:blur(14px); background:color-mix(in srgb, var(--bg) 78%, transparent); border-bottom:1px solid var(--border); }
+.nav-inner{ display:flex; align-items:center; justify-content:space-between; height:72px; }
+.brand{ display:flex; align-items:center; gap:10px; font-weight:800; font-size:18px; cursor:pointer; }
+.nav-links{ display:flex; align-items:center; gap:30px; }
+.nav-links a{ font-size:14px; font-weight:600; color:var(--text-soft); cursor:pointer; padding:6px 0; border-bottom:2px solid transparent; }
+.nav-links a:hover, .nav-links a.active{ color:var(--text); }
+.nav-links a.active{ border-color:var(--blue); }
+.nav-right{ display:flex; align-items:center; gap:12px; }
+.theme-toggle{ width:36px; height:36px; border-radius:50%; border:1px solid var(--border); background:transparent; display:flex; align-items:center; justify-content:center; color:var(--text-soft); }
+.theme-toggle svg{ width:16px; height:16px; }
+.icon-moon{ display:none; } html.dark .icon-sun{ display:none; } html.dark .icon-moon{ display:block; }
+.nav-toggle{ display:none; background:none; border:none; width:36px; height:36px; }
+.nav-toggle span, .nav-toggle span::before, .nav-toggle span::after{ content:""; display:block; width:18px; height:2px; background:var(--text); position:relative; }
+.nav-toggle span::before{ position:absolute; top:-6px; } .nav-toggle span::after{ position:absolute; top:6px; }
+@media (max-width:880px){
+  .nav-links{ position:fixed; inset:72px 0 auto 0; background:var(--bg); flex-direction:column; align-items:flex-start; padding:20px 28px; gap:16px; border-bottom:1px solid var(--border); transform:translateY(-130%); transition:transform .3s var(--ease); }
+  .nav-links.open{ transform:translateY(0); }
+  .nav-toggle{ display:block; }
+}
+.section{ padding:88px 0; }
+.section-tight{ padding:60px 0; }
+.section-alt{ background:var(--gray-light); }
+@media (max-width:880px){ .section{ padding:56px 0; } .section-tight{ padding:40px 0; } }
+.section-head{ max-width:660px; margin-bottom:44px; }
+.section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+.section-head h2{ font-size:clamp(28px,4vw,40px); margin-top:12px; }
+.section-head p{ margin-top:14px; font-size:16px; color:var(--text-soft); line-height:1.65; }
+.hero{ padding:80px 0 50px; }
+.hero-grid{ display:grid; grid-template-columns:1.1fr .9fr; gap:50px; align-items:center; }
+@media (max-width:960px){ .hero-grid{ grid-template-columns:1fr; } }
+.hero h1{ font-size:clamp(34px,5.4vw,64px); }
+.hero .lede{ margin-top:18px; font-size:18px; color:var(--text-soft); max-width:520px; line-height:1.65; }
+.hero-cta{ margin-top:28px; display:flex; gap:14px; flex-wrap:wrap; }
+.hero-note{ margin-top:18px; font-size:13px; color:var(--text-soft); font-family:var(--mono); }
+.trust-strip{ padding:32px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.trust-inner{ display:flex; align-items:center; gap:30px; flex-wrap:wrap; justify-content:space-between; }
+.trust-label{ font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-soft); }
+.trust-logos{ display:flex; gap:28px; flex-wrap:wrap; opacity:.7; }
+.trust-logos span{ font-weight:800; font-size:15px; color:var(--text-soft); }
+.grid{ display:grid; gap:22px; }
+.grid-2{ grid-template-columns:repeat(2,1fr); }
+.grid-3{ grid-template-columns:repeat(3,1fr); }
+@media (max-width:960px){ .grid-3{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:620px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+.card{ background:var(--bg); border:1px solid var(--border); border-radius:var(--radius-lg); padding:28px; transition:.3s var(--ease); }
+.card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-md); }
+.card-icon{ width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:color-mix(in srgb, var(--blue) 10%, transparent); color:var(--blue); margin-bottom:16px; }
+.card-icon svg{ width:20px; height:20px; }
+.card h3{ font-size:18px; } .card p{ margin-top:10px; font-size:14px; color:var(--text-soft); line-height:1.6; }
+.tag{ font-family:var(--mono); font-size:11px; padding:5px 10px; border-radius:999px; background:var(--gray-light); color:var(--text-soft); border:1px solid var(--border); display:inline-block; }
+.tag-list{ margin-top:14px; display:flex; flex-wrap:wrap; gap:8px; }
+.stats-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+@media (max-width:720px){ .stats-row{ grid-template-columns:repeat(2,1fr); } }
+.stat .num{ font-family:var(--mono); font-size:clamp(28px,4vw,44px); font-weight:700; color:var(--ink); }
+html.dark .stat .num{ color:#fff; }
+.stat .num span{ color:var(--blue); }
+.stat .label{ margin-top:4px; font-size:13px; color:var(--text-soft); }
+.testi-card{ background:var(--bg); border:1px solid var(--border); border-radius:var(--radius-lg); padding:28px; }
+.testi-quote{ font-size:15.5px; line-height:1.65; }
+.testi-quote::before{ content:"\201C"; } .testi-quote::after{ content:"\201D"; }
+.testi-person{ margin-top:18px; display:flex; align-items:center; gap:12px; }
+.testi-avatar{ width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,var(--blue),var(--cyan)); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:13px; }
+.testi-name{ font-weight:700; font-size:14px; } .testi-role{ font-size:12.5px; color:var(--text-soft); }
+.dotpath-row{ display:grid; grid-template-columns:repeat(6,1fr); gap:18px; }
+@media (max-width:960px){ .dotpath-row{ grid-template-columns:repeat(3,1fr); } }
+@media (max-width:560px){ .dotpath-row{ grid-template-columns:1fr; } }
+.dotpath-step{ position:relative; padding-top:32px; }
+.dotpath-dot{ position:absolute; top:0; left:0; width:15px; height:15px; border-radius:50%; background:var(--bg); border:3px solid var(--blue); box-shadow:0 0 0 5px color-mix(in srgb, var(--blue) 12%, transparent); }
+.dotpath-step:last-child .dotpath-dot{ background:var(--cyan); border-color:var(--cyan); }
+.dotpath-step h3{ font-size:16px; margin-top:2px; } .dotpath-step p{ margin-top:6px; font-size:13.5px; color:var(--text-soft); }
+.step-tag{ font-family:var(--mono); font-size:11px; color:var(--text-soft); }
+.faq-item{ border-bottom:1px solid var(--border); }
+.faq-q{ width:100%; display:flex; justify-content:space-between; gap:16px; padding:20px 0; background:none; border:none; text-align:left; font-size:15.5px; font-weight:700; color:var(--text); }
+.faq-q svg{ width:17px; height:17px; flex:none; transition:transform .3s var(--ease); color:var(--blue); }
+.faq-item.open .faq-q svg{ transform:rotate(45deg); }
+.faq-a{ max-height:0; overflow:hidden; transition:max-height .35s var(--ease); }
+.faq-a p{ padding-bottom:20px; color:var(--text-soft); font-size:14px; line-height:1.65; max-width:740px; }
+.cta-band{ background:var(--ink); border-radius:var(--radius-lg); padding:60px 44px; text-align:center; position:relative; overflow:hidden; }
+.cta-band h2{ color:#fff; font-size:clamp(26px,4vw,38px); }
+.cta-band p{ color:#c7d0e0; margin-top:12px; font-size:15.5px; }
+.cta-band .hero-cta{ justify-content:center; margin-top:26px; }
+footer{ border-top:1px solid var(--border); padding:56px 0 28px; }
+.footer-grid{ display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:36px; }
+@media (max-width:880px){ .footer-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:560px){ .footer-grid{ grid-template-columns:1fr; } }
+.footer-brand p{ margin-top:12px; color:var(--text-soft); font-size:14px; line-height:1.65; max-width:280px; }
+.footer-col h4{ font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--text-soft); font-weight:700; margin-bottom:14px; }
+.footer-col a{ display:block; padding:5px 0; font-size:14px; color:var(--text); cursor:pointer; }
+.footer-col a:hover{ color:var(--blue); }
+.footer-bottom{ margin-top:44px; padding-top:22px; border-top:1px solid var(--border); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:13px; color:var(--text-soft); }
+.footer-newsletter{ display:flex; gap:8px; margin-top:14px; }
+.footer-newsletter input{ flex:1; min-width:0; padding:9px 13px; border-radius:999px; border:1px solid var(--border); background:var(--bg); color:var(--text); font-size:13px; font-family:var(--font); }
+.reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s var(--ease), transform .6s var(--ease); }
+.reveal.in{ opacity:1; transform:translateY(0); }
+.mt-8{margin-top:8px;} .mt-16{margin-top:16px;} .mt-24{margin-top:24px;} .mt-32{margin-top:32px;} .mt-48{margin-top:48px;}
+.text-center{ text-align:center; }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:999px; background:color-mix(in srgb, var(--cyan) 14%, transparent); color:var(--ink); font-size:12px; font-weight:700; }
+html.dark .pill{ color:#fff; }
+.page-hero{ padding:60px 0 36px; }
+.page-hero h1{ font-size:clamp(30px,5vw,50px); }
+.breadcrumb{ font-family:var(--mono); font-size:12px; color:var(--text-soft); margin-bottom:16px; }
+.pricing-card{ background:var(--bg); border:1px solid var(--border); border-radius:var(--radius-lg); padding:32px 26px; display:flex; flex-direction:column; position:relative; }
+.pricing-card.popular{ border-color:var(--blue); box-shadow:var(--shadow-lg); }
+.pricing-badge{ position:absolute; top:-13px; left:26px; background:var(--blue); color:#fff; font-size:11px; font-weight:700; padding:5px 12px; border-radius:999px; font-family:var(--mono); }
+.pricing-name{ font-size:19px; font-weight:800; }
+.pricing-desc{ margin-top:6px; color:var(--text-soft); font-size:13.5px; }
+.pricing-price{ margin-top:18px; font-family:var(--mono); font-size:34px; font-weight:700; }
+.pricing-price span{ font-size:13px; color:var(--text-soft); font-weight:500; }
+.pricing-features{ margin-top:22px; display:flex; flex-direction:column; gap:10px; flex:1; }
+.pricing-features li{ display:flex; gap:9px; font-size:13.5px; align-items:flex-start; }
+.pricing-features svg{ width:15px; height:15px; color:var(--blue); flex:none; margin-top:2px; }
+.pricing-card .btn{ margin-top:24px; }
+.contact-grid{ display:grid; grid-template-columns:1fr 1.1fr; gap:44px; align-items:flex-start; }
+@media (max-width:880px){ .contact-grid{ grid-template-columns:1fr; } }
+.contact-item{ display:flex; gap:14px; padding:16px 0; border-bottom:1px solid var(--border); }
+.contact-item:last-child{ border-bottom:none; }
+.contact-item h4{ font-size:14.5px; } .contact-item p, .contact-item a{ font-size:14px; color:var(--text-soft); margin-top:3px; }
+.form-card{ background:var(--gray-light); border:1px solid var(--border); border-radius:var(--radius-lg); padding:30px; }
+.form-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media (max-width:560px){ .form-row{ grid-template-columns:1fr; } }
+.field{ margin-bottom:16px; }
+.field label{ font-size:13px; font-weight:700; display:block; margin-bottom:7px; }
+.field input, .field select, .field textarea{ width:100%; padding:12px 14px; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--bg); color:var(--text); font-family:var(--font); font-size:14px; }
+.map-placeholder{ margin-top:22px; border-radius:var(--radius-lg); border:1px solid var(--border); height:180px; background:linear-gradient(var(--gray-light),var(--gray-light)), repeating-linear-gradient(0deg,transparent,transparent 23px,var(--border) 24px), repeating-linear-gradient(90deg,transparent,transparent 23px,var(--border) 24px); display:flex; align-items:center; justify-content:center; color:var(--text-soft); font-family:var(--mono); font-size:12.5px; }
+.filter-row{ display:flex; gap:9px; flex-wrap:wrap; margin-bottom:30px; }
+.filter-btn{ padding:8px 16px; border-radius:999px; border:1px solid var(--border); background:transparent; font-size:13px; font-weight:700; color:var(--text-soft); }
+.filter-btn.active,.filter-btn:hover{ background:var(--ink); color:#fff; border-color:var(--ink); }
+.project-card{ border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--border); background:var(--bg); }
+.project-thumb{ aspect-ratio:4/3; background:linear-gradient(135deg,var(--ink),var(--blue-2)); display:flex; align-items:flex-end; padding:18px; }
+.project-thumb .tag{ background:rgba(255,255,255,.15); color:#fff; border-color:transparent; }
+.project-body{ padding:20px; } .project-body h3{ font-size:16.5px; } .project-body p{ margin-top:6px; color:var(--text-soft); font-size:13.5px; }
+.result-row{ display:flex; gap:16px; margin-top:12px; flex-wrap:wrap; }
+.result{ font-family:var(--mono); font-size:11.5px; color:var(--text-soft); }
+.result b{ color:var(--blue); font-size:13px; }
+.value-row{ display:flex; gap:14px; padding:18px 0; border-bottom:1px solid var(--border); }
+.value-row:last-child{ border-bottom:none; }
+.value-num{ font-family:var(--mono); font-size:12.5px; color:var(--blue); font-weight:700; padding-top:2px; }
+.service-block{ padding:56px 0; border-bottom:1px solid var(--border); }
+.service-block:last-of-type{ border-bottom:none; }
+.service-inner{ display:grid; grid-template-columns:.9fr 1.1fr; gap:44px; }
+@media (max-width:880px){ .service-inner{ grid-template-columns:1fr; } }
+.service-inner.reverse .service-media{ order:2; }
+.benefit-list{ display:flex; flex-direction:column; gap:12px; margin-top:18px; }
+.benefit-list li{ display:flex; gap:9px; font-size:14px; align-items:flex-start; }
+.benefit-list svg{ width:16px; height:16px; color:var(--blue); flex:none; margin-top:2px; }
+.service-media{ border-radius:var(--radius-lg); border:1px solid var(--border); background:var(--gray-light); display:flex; align-items:center; justify-content:center; min-height:240px; padding:24px; }
+.page{ display:none; }
+.page.active{ display:block; }
+@media (prefers-reduced-motion: reduce){ *{ transition-duration:.001ms !important; } }
+</style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container nav-inner">
+    <div class="brand" onclick="goTo('home')">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M27 8.5C24.6 5.6 20.9 4 17 4 9.8 4 4 9.8 4 17s5.8 13 13 13c3.9 0 7.6-1.6 10-4.5" stroke="#0F172A" stroke-width="3.2" stroke-linecap="round"/><circle cx="24" cy="17" r="4" fill="#2563EB"/></svg>
+      Create A Dot
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a onclick="goTo('home')" data-page="home">Home</a>
+      <a onclick="goTo('about')" data-page="about">About</a>
+      <a onclick="goTo('services')" data-page="services">Services</a>
+      <a onclick="goTo('projects')" data-page="projects">Projects</a>
+      <a onclick="goTo('pricing')" data-page="pricing">Pricing</a>
+      <a onclick="goTo('contact')" data-page="contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      </button>
+      <a class="btn btn-primary btn-sm" onclick="goTo('contact')">Get Quote</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= HOME ================= -->
+<div class="page active" id="page-home">
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="reveal">
+        <span class="eyebrow">Premium Digital Agency · Dhaka</span>
+        <h1 class="mt-16">Premium websites that grow your business.</h1>
+        <p class="lede">Professional websites, branding, SEO and digital marketing — designed as a single system that turns visitors into customers.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" onclick="goTo('contact')">Get Free Consultation</a>
+          <a class="btn btn-outline" onclick="goTo('projects')">View Portfolio</a>
+        </div>
+        <p class="hero-note">// 60+ projects shipped · avg. project value ৳20,000–৳50,000+</p>
+      </div>
+      <div class="reveal" aria-hidden="true">
+        <svg viewBox="0 0 480 480" width="100%">
+          <defs><linearGradient id="pg" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#2563EB"/><stop offset="100%" stop-color="#22D3EE"/></linearGradient>
+          <radialGradient id="gl" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#22D3EE" stop-opacity="0.3"/><stop offset="100%" stop-color="#22D3EE" stop-opacity="0"/></radialGradient></defs>
+          <circle cx="90" cy="380" r="120" fill="url(#gl)"/>
+          <path d="M70 400 C140 400,150 300,210 280 C270 260,260 190,330 160 C380 140,380 100,430 70" fill="none" stroke="url(#pg)" stroke-width="3" stroke-dasharray="6 10" opacity="0.55"/>
+          <circle cx="70" cy="400" r="9" fill="#0F172A"/><circle cx="210" cy="280" r="6" fill="#2563EB"/><circle cx="330" cy="160" r="6" fill="#2563EB"/>
+          <circle cx="430" cy="70" r="10" fill="#22D3EE"/><circle cx="430" cy="70" r="18" fill="none" stroke="#22D3EE" opacity="0.5"/>
+          <g font-family="JetBrains Mono, monospace" font-size="11" fill="#4b5568"><text x="46" y="428">idea</text><text x="196" y="308">design</text><text x="316" y="188">launch</text><text x="404" y="52">growth</text></g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-strip"><div class="container trust-inner">
+    <span class="trust-label">Trusted by growing teams in</span>
+    <div class="trust-logos"><span>Retail</span><span>Clinics</span><span>Real Estate</span><span>Manufacturing</span><span>Hospitality</span><span>E-commerce</span></div>
+  </div></section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">What we do</span><h2>One team, every piece of your digital presence.</h2><p>From your first sketch to your thousandth customer — design, build, and growth under one roof.</p></div>
+      <div class="grid grid-3">
+        <div class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg></div><h3>Web Design</h3><p>Premium, responsive websites built around how your customers decide.</p></div>
+        <div class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><h3>WordPress</h3><p>Fast, scalable, SEO-friendly builds you can manage yourself.</p></div>
+        <div class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg></div><h3>Branding</h3><p>Logo, identity and guidelines that make you instantly recognizable.</p></div>
+        <div class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><h3>SEO</h3><p>Technical, on-page and local SEO to get you found.</p></div>
+        <div class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg></div><h3>Google Ads</h3><p>Search campaigns built for leads, with conversion tracking.</p></div>
+        <div class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/></svg></div><h3>UI/UX Design</h3><p>Wireframes, interfaces and landing pages that put clarity first.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Selected work</span><h2>Recent projects, real results.</h2></div>
+      <div class="grid grid-3">
+        <div class="project-card reveal" onclick="goTo('projects')" style="cursor:pointer;"><div class="project-thumb"><span class="tag">Healthcare</span></div><div class="project-body"><h3>Arogya Diagnostic Center</h3><p>Full rebuild + local SEO — 3.2x more appointment inquiries.</p></div></div>
+        <div class="project-card reveal" onclick="goTo('projects')" style="cursor:pointer;"><div class="project-thumb" style="background:linear-gradient(135deg,#0F172A,#0891b2)"><span class="tag">E-commerce</span></div><div class="project-body"><h3>Nakshi Home Décor</h3><p>Headless storefront + Google Ads — checkout up 41%.</p></div></div>
+        <div class="project-card reveal" onclick="goTo('projects')" style="cursor:pointer;"><div class="project-thumb" style="background:linear-gradient(135deg,#1d4ed8,#0F172A)"><span class="tag">Real Estate</span></div><div class="project-body"><h3>Green Terrace Properties</h3><p>Brand identity + listings platform for a premium audience.</p></div></div>
+      </div>
+      <div class="text-center mt-48 reveal"><a class="btn btn-outline" onclick="goTo('projects')">View Full Portfolio</a></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2" style="align-items:center; gap:50px;">
+        <div class="reveal"><span class="eyebrow">Why Create A Dot</span><h2 class="mt-16" style="font-size:clamp(26px,4vw,38px);">Built by people who treat your website as a growth asset.</h2><p class="mt-16" style="color:var(--text-soft); font-size:15.5px; line-height:1.65;">A small, senior team — no account handoffs, no template themes, no disappearing after launch.</p></div>
+        <div class="stats-row reveal">
+          <div class="stat"><div class="num"><span>60</span>+</div><div class="label">Projects delivered</div></div>
+          <div class="stat"><div class="num">4<span>.9</span></div><div class="label">Average rating</div></div>
+          <div class="stat"><div class="num"><span>35</span>+</div><div class="label">Active clients</div></div>
+          <div class="stat"><div class="num"><span>24</span>/7</div><div class="label">Support</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head center reveal"><span class="eyebrow">How we work</span><h2>One dot. One path. Six moves to launch.</h2></div>
+      <div class="reveal"><div class="dotpath-row">
+        <div class="dotpath-step"><span class="dotpath-dot"></span><span class="step-tag">STEP 01</span><h3>Discover</h3><p>We learn your business before opening a design tool.</p></div>
+        <div class="dotpath-step"><span class="dotpath-dot"></span><span class="step-tag">STEP 02</span><h3>Plan</h3><p>Sitemap and success metrics, agreed upfront.</p></div>
+        <div class="dotpath-step"><span class="dotpath-dot"></span><span class="step-tag">STEP 03</span><h3>Design</h3><p>Premium UI/UX crafted around your brand.</p></div>
+        <div class="dotpath-step"><span class="dotpath-dot"></span><span class="step-tag">STEP 04</span><h3>Develop</h3><p>Fast, clean, SEO-ready build.</p></div>
+        <div class="dotpath-step"><span class="dotpath-dot"></span><span class="step-tag">STEP 05</span><h3>Launch</h3><p>QA'd and shipped without surprises.</p></div>
+        <div class="dotpath-step"><span class="dotpath-dot"></span><span class="step-tag">STEP 06</span><h3>Grow</h3><p>SEO and ads compound your results.</p></div>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Client words</span><h2>Trusted by founders who need results.</h2></div>
+      <div class="grid grid-3">
+        <div class="testi-card reveal"><p class="testi-quote">Our inquiries doubled within two months of launch.</p><div class="testi-person"><div class="testi-avatar">RA</div><div><div class="testi-name">Dr. Rafiul Ahmed</div><div class="testi-role">Arogya Diagnostics</div></div></div></div>
+        <div class="testi-card reveal"><p class="testi-quote">Finally a team that explains SEO in plain language.</p><div class="testi-person"><div class="testi-avatar">NH</div><div><div class="testi-name">Nusrat Haque</div><div class="testi-role">Nakshi Home Décor</div></div></div></div>
+        <div class="testi-card reveal"><p class="testi-quote">The new site closed three enterprise leads in month one.</p><div class="testi-person"><div class="testi-avatar">SK</div><div><div class="testi-name">Shahriar Kabir</div><div class="testi-role">Green Terrace Properties</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Questions</span><h2>Frequently asked questions.</h2></div>
+      <div class="reveal" style="max-width:800px;">
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How long does a typical project take?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq-a"><p>Most business websites launch in 3–5 weeks. Branding-only projects take 2–3 weeks; larger builds run 6–10 weeks.</p></div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What does a project usually cost?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq-a"><p>Most engagements fall between ৳20,000 and ৳50,000+, depending on scope. See our Pricing page for details.</p></div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do you work with businesses outside Bangladesh?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq-a"><p>Yes — a growing share of clients are international, looking for premium WordPress and branding work.</p></div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Will I be able to edit the website myself?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq-a"><p>Yes — we build so your team can update text, images and blog posts without calling us for every change.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="cta-band reveal">
+        <span class="pill">Free 30-minute consultation</span>
+        <h2 class="mt-16">Ready to grow your business?</h2>
+        <p>Let's build something amazing together.</p>
+        <div class="hero-cta"><a class="btn btn-cyan" onclick="goTo('contact')">Book a Free Consultation</a><a class="btn btn-outline" style="border-color:#334155; color:#fff;" onclick="goTo('pricing')">See Pricing</a></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ================= ABOUT ================= -->
+<div class="page" id="page-about">
+  <section class="page-hero"><div class="container">
+    <div class="breadcrumb reveal">Home / About</div>
+    <span class="eyebrow reveal">Our story</span>
+    <h1 class="mt-16 reveal">Every great business starts with a single dot.</h1>
+    <p class="lede reveal" style="max-width:640px;">That dot represents an idea. We turn that first idea into websites, brands and digital experiences that help businesses grow.</p>
+  </div></section>
+  <section class="section"><div class="container">
+    <div class="grid grid-2" style="gap:36px;">
+      <div class="card reveal"><span class="eyebrow">Mission</span><h3 class="mt-16" style="font-size:21px;">Help businesses establish a strong online presence</h3><p class="mt-16">Through premium design, high-performance websites, branding, SEO and digital marketing.</p></div>
+      <div class="card reveal"><span class="eyebrow">Vision</span><h3 class="mt-16" style="font-size:21px;">Bangladesh's leading premium digital agency</h3><p class="mt-16">Serving ambitious clients in Bangladesh and around the world.</p></div>
+    </div>
+  </div></section>
+  <section class="section section-alt"><div class="container">
+    <div class="section-head reveal"><span class="eyebrow">What we believe</span><h2>Our values.</h2></div>
+    <div class="reveal">
+      <div class="value-row"><span class="value-num">01</span><div><h4 style="margin:0; font-size:15.5px;">Premium, not decorative</h4><p style="margin-top:5px; color:var(--text-soft); font-size:14px;">Every visual decision earns its place.</p></div></div>
+      <div class="value-row"><span class="value-num">02</span><div><h4 style="margin:0; font-size:15.5px;">Built to convert</h4><p style="margin-top:5px; color:var(--text-soft); font-size:14px;">A beautiful site that doesn't generate inquiries has failed its brief.</p></div></div>
+      <div class="value-row"><span class="value-num">03</span><div><h4 style="margin:0; font-size:15.5px;">Transparent by default</h4><p style="margin-top:5px; color:var(--text-soft); font-size:14px;">Clear timelines, clear pricing, clear reporting.</p></div></div>
+      <div class="value-row"><span class="value-num">04</span><div><h4 style="margin:0; font-size:15.5px;">Long-term partners</h4><p style="margin-top:5px; color:var(--text-soft); font-size:14px;">We stick around after launch.</p></div></div>
+    </div>
+  </div></section>
+  <section class="section"><div class="container">
+    <div class="section-head center reveal"><span class="eyebrow">How we work</span><h2>Our process.</h2></div>
+    <div class="reveal"><div class="dotpath-row">
+      <div class="dotpath-step"><span class="dotpath-dot"></span><span class="step-tag">01</span><h3>Discover</h3><p>Understand your business first.</p></div>
+      <div class="dotpath-step"><span class="dotpath-dot"></span><span class="step-tag">02</span><h3>Plan</h3><p>Agree the sitemap and metrics.</p></div>
+      <div class="dotpath-step"><span class="dotpath-dot"></span><span class="step-tag">03</span><h3>Design</h3><p>Premium UI/UX for your brand.</p></div>
+      <div class="dotpath-step"><span class="dotpath-dot"></span><span class="step-tag">04</span><h3>Develop</h3><p>Clean, fast, SEO-ready code.</p></div>
+      <div class="dotpath-step"><span class="dotpath-dot"></span><span class="step-tag">05</span><h3>Launch</h3><p>Tested and shipped with confidence.</p></div>
+      <div class="dotpath-step"><span class="dotpath-dot"></span><span class="step-tag">06</span><h3>Grow</h3><p>SEO and ads compound results.</p></div>
+    </div></div>
+  </div></section>
+  <section class="section-tight section-alt"><div class="container">
+    <div class="cta-band reveal"><h2>Let's build something amazing together.</h2><p>Tell us about your business — we'll tell you how we'd approach it.</p><div class="hero-cta"><a class="btn btn-cyan" onclick="goTo('contact')">Start Your Project</a></div></div>
+  </div></section>
+</div>
+
+<!-- ================= SERVICES ================= -->
+<div class="page" id="page-services">
+  <section class="page-hero"><div class="container">
+    <div class="breadcrumb reveal">Home / Services</div>
+    <span class="eyebrow reveal">What we offer</span>
+    <h1 class="mt-16 reveal">Everything your digital presence needs.</h1>
+  </div></section>
+
+  <section class="service-block"><div class="container service-inner">
+    <div class="reveal"><span class="eyebrow">01 · Web Design</span><h2 class="mt-16" style="font-size:28px;">Premium responsive websites.</h2><p class="mt-16" style="color:var(--text-soft);">Designed from a blank canvas around your brand and your customer's decision path.</p>
+      <ul class="benefit-list"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Custom UI, not a theme</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Mobile-first and responsive</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Conversion-focused layout</li></ul>
+      <div class="tag-list"><span class="tag">Figma</span><span class="tag">Next.js</span><span class="tag">Tailwind</span></div>
+    </div>
+    <div class="service-media reveal"><svg viewBox="0 0 300 220" width="100%"><rect x="10" y="10" width="280" height="200" rx="14" fill="#fff" stroke="#E5E7EB" stroke-width="2"/><rect x="10" y="10" width="280" height="34" rx="14" fill="#0F172A"/><rect x="30" y="60" width="140" height="14" rx="4" fill="#0F172A"/><rect x="30" y="84" width="200" height="8" rx="4" fill="#E5E7EB"/><rect x="30" y="126" width="90" height="30" rx="8" fill="#2563EB"/></svg></div>
+  </div></section>
+
+  <section class="service-block"><div class="container service-inner reverse">
+    <div class="service-media reveal"><svg viewBox="0 0 300 220" width="100%"><circle cx="150" cy="110" r="70" fill="none" stroke="#2563EB" stroke-width="3"/><circle cx="150" cy="110" r="14" fill="#22D3EE"/></svg></div>
+    <div class="reveal"><span class="eyebrow">02 · WordPress Development</span><h2 class="mt-16" style="font-size:28px;">Fast, scalable, SEO-friendly WordPress.</h2><p class="mt-16" style="color:var(--text-soft);">For when you need a platform your team can manage independently.</p>
+      <ul class="benefit-list"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Rank Math SEO configured properly</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Editable page-builder architecture</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Optimized for Core Web Vitals</li></ul>
+      <div class="tag-list"><span class="tag">WordPress</span><span class="tag">Kubio</span><span class="tag">Rank Math</span></div>
+    </div>
+  </div></section>
+
+  <section class="service-block"><div class="container service-inner">
+    <div class="reveal"><span class="eyebrow">03 · Branding</span><h2 class="mt-16" style="font-size:28px;">Identity that makes you recognizable.</h2><p class="mt-16" style="color:var(--text-soft);">Logo, visual identity and brand guidelines that work everywhere.</p>
+      <ul class="benefit-list"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Primary, secondary and icon marks</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Full brand guideline document</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Color, type and imagery rules</li></ul>
+      <div class="tag-list"><span class="tag">Identity</span><span class="tag">Guidelines</span></div>
+    </div>
+    <div class="service-media reveal"><svg viewBox="0 0 300 220" width="100%"><circle cx="110" cy="110" r="46" fill="#0F172A"/><circle cx="180" cy="110" r="46" fill="none" stroke="#2563EB" stroke-width="3"/><circle cx="150" cy="150" r="20" fill="#22D3EE"/></svg></div>
+  </div></section>
+
+  <section class="service-block"><div class="container service-inner reverse">
+    <div class="service-media reveal"><svg viewBox="0 0 300 220" width="100%"><circle cx="130" cy="100" r="55" fill="none" stroke="#2563EB" stroke-width="8"/><line x1="172" y1="142" x2="220" y2="190" stroke="#0F172A" stroke-width="10" stroke-linecap="round"/></svg></div>
+    <div class="reveal"><span class="eyebrow">04 · SEO</span><h2 class="mt-16" style="font-size:28px;">Get found by customers searching for you.</h2><p class="mt-16" style="color:var(--text-soft);">Technical, on-page and local SEO that fixes what's actually holding rankings back.</p>
+      <ul class="benefit-list"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Technical SEO audit and fixes</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>On-page optimization</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Local SEO + Google Business Profile</li></ul>
+      <div class="tag-list"><span class="tag">Rank Math</span><span class="tag">Local SEO</span></div>
+    </div>
+  </div></section>
+
+  <section class="service-block"><div class="container service-inner">
+    <div class="reveal"><span class="eyebrow">05 · Google Ads</span><h2 class="mt-16" style="font-size:28px;">Lead generation, not just clicks.</h2><p class="mt-16" style="color:var(--text-soft);">Search campaigns built around conversion tracking from day one.</p>
+      <ul class="benefit-list"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>High-intent keyword targeting</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Conversion tracking wired in</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Ongoing optimization</li></ul>
+      <div class="tag-list"><span class="tag">Google Ads</span><span class="tag">GTM</span></div>
+    </div>
+    <div class="service-media reveal"><svg viewBox="0 0 300 220" width="100%"><polyline points="30,180 90,140 150,150 210,90 270,50" fill="none" stroke="#2563EB" stroke-width="4"/><circle cx="270" cy="50" r="9" fill="#22D3EE"/></svg></div>
+  </div></section>
+
+  <section class="section-tight section-alt"><div class="container">
+    <div class="cta-band reveal"><h2>Not sure which services you need?</h2><p>Tell us your goals on a free call.</p><div class="hero-cta"><a class="btn btn-cyan" onclick="goTo('contact')">Request a Quote</a></div></div>
+  </div></section>
+</div>
+
+<!-- ================= PROJECTS ================= -->
+<div class="page" id="page-projects">
+  <section class="page-hero"><div class="container">
+    <div class="breadcrumb reveal">Home / Projects</div>
+    <span class="eyebrow reveal">Portfolio</span>
+    <h1 class="mt-16 reveal">Real projects. Real, measurable results.</h1>
+  </div></section>
+  <section class="section-tight"><div class="container">
+    <div class="filter-row reveal">
+      <button class="filter-btn active" onclick="filterProjects(this,'all')">All Projects</button>
+      <button class="filter-btn" onclick="filterProjects(this,'web-design')">Web Design</button>
+      <button class="filter-btn" onclick="filterProjects(this,'branding')">Branding</button>
+      <button class="filter-btn" onclick="filterProjects(this,'ecommerce')">E-commerce</button>
+      <button class="filter-btn" onclick="filterProjects(this,'healthcare')">Healthcare</button>
+      <button class="filter-btn" onclick="filterProjects(this,'real-estate')">Real Estate</button>
+    </div>
+    <div class="grid grid-3" id="projectGrid">
+      <div class="project-card reveal" data-cat="healthcare"><div class="project-thumb"><span class="tag">Healthcare</span></div><div class="project-body"><h3>Arogya Diagnostic Center</h3><p>Full rebuild + local SEO for a diagnostic clinic.</p><div class="result-row"><span class="result">Inquiries <b>+220%</b></span><span class="result">Rankings <b>Page 1</b></span></div></div></div>
+      <div class="project-card reveal" data-cat="ecommerce"><div class="project-thumb" style="background:linear-gradient(135deg,#0F172A,#0891b2)"><span class="tag">E-commerce</span></div><div class="project-body"><h3>Nakshi Home Décor</h3><p>Headless storefront + Google Ads campaign.</p><div class="result-row"><span class="result">CVR <b>+41%</b></span><span class="result">CPA <b>-28%</b></span></div></div></div>
+      <div class="project-card reveal" data-cat="real-estate"><div class="project-thumb" style="background:linear-gradient(135deg,#1d4ed8,#0F172A)"><span class="tag">Real Estate</span></div><div class="project-body"><h3>Green Terrace Properties</h3><p>Full brand identity + listings platform.</p><div class="result-row"><span class="result">Leads/mo <b>+65</b></span></div></div></div>
+      <div class="project-card reveal" data-cat="web-design"><div class="project-thumb" style="background:linear-gradient(135deg,#0F172A,#2563EB)"><span class="tag">Corporate</span></div><div class="project-body"><h3>Meridian Manufacturing Co.</h3><p>Corporate redesign + technical SEO overhaul.</p><div class="result-row"><span class="result">Indexed <b>0→140</b></span><span class="result">Traffic <b>+180%</b></span></div></div></div>
+      <div class="project-card reveal" data-cat="branding"><div class="project-thumb" style="background:linear-gradient(135deg,#22D3EE,#0F172A)"><span class="tag">F&amp;B</span></div><div class="project-body"><h3>Cardamom &amp; Co. Café</h3><p>Full brand identity and packaging system.</p><div class="result-row"><span class="result">Locations <b>3</b></span></div></div></div>
+      <div class="project-card reveal" data-cat="healthcare"><div class="project-thumb" style="background:linear-gradient(135deg,#2563EB,#22D3EE)"><span class="tag">Healthcare</span></div><div class="project-body"><h3>SmileCare Dental</h3><p>Search ads and conversion tracking setup.</p><div class="result-row"><span class="result">Bookings <b>+90/mo</b></span></div></div></div>
+      <div class="project-card reveal" data-cat="ecommerce"><div class="project-thumb" style="background:linear-gradient(135deg,#0F172A,#1d4ed8)"><span class="tag">Retail</span></div><div class="project-body"><h3>Bindu Fashion House</h3><p>WooCommerce migration + performance work.</p><div class="result-row"><span class="result">Load time <b>-77%</b></span></div></div></div>
+      <div class="project-card reveal" data-cat="real-estate"><div class="project-thumb" style="background:linear-gradient(135deg,#334155,#0F172A)"><span class="tag">Real Estate</span></div><div class="project-body"><h3>Horizon Realty Group</h3><p>Ongoing maintenance and SEO retainer.</p><div class="result-row"><span class="result">Uptime <b>99.98%</b></span></div></div></div>
+    </div>
+  </div></section>
+  <section class="section-tight section-alt"><div class="container">
+    <div class="cta-band reveal"><h2>Want results like these?</h2><p>Let's talk about your project.</p><div class="hero-cta"><a class="btn btn-cyan" onclick="goTo('contact')">Book a Free Consultation</a></div></div>
+  </div></section>
+</div>
+
+<!-- ================= PRICING ================= -->
+<div class="page" id="page-pricing">
+  <section class="page-hero"><div class="container">
+    <div class="breadcrumb reveal">Home / Pricing</div>
+    <span class="eyebrow reveal">Investment</span>
+    <h1 class="mt-16 reveal">Simple packages, transparent pricing.</h1>
+  </div></section>
+  <section class="section-tight"><div class="container">
+    <div class="grid grid-3">
+      <div class="pricing-card reveal"><div class="pricing-name">Starter</div><p class="pricing-desc">A focused website for a small business that needs credibility, fast.</p><div class="pricing-price">৳20,000<span>+ / project</span></div>
+        <ul class="pricing-features"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Up to 5 pages</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Mobile-responsive design</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Basic on-page SEO</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Timeline: 2–3 weeks</li></ul>
+        <a class="btn btn-outline btn-block" onclick="goTo('contact')">Start Your Project</a></div>
+      <div class="pricing-card popular reveal"><span class="pricing-badge">Most Popular</span><div class="pricing-name">Growth</div><p class="pricing-desc">A full business website built to generate leads.</p><div class="pricing-price">৳35,000<span>+ / project</span></div>
+        <ul class="pricing-features"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Up to 10 pages</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Full SEO setup</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Google Business Profile</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Timeline: 3–5 weeks</li></ul>
+        <a class="btn btn-primary btn-block" onclick="goTo('contact')">Start Your Project</a></div>
+      <div class="pricing-card reveal"><div class="pricing-name">Premium</div><p class="pricing-desc">Enterprise-ready for larger catalogs or portals.</p><div class="pricing-price">৳50,000<span>+ / project</span></div>
+        <ul class="pricing-features"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Unlimited pages</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Full brand identity included</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>E-commerce/booking functionality</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Timeline: 6–10 weeks</li></ul>
+        <a class="btn btn-outline btn-block" onclick="goTo('contact')">Request a Quote</a></div>
+    </div>
+  </div></section>
+  <section class="section-tight"><div class="container">
+    <div class="cta-band reveal"><h2>Not sure which package fits?</h2><p>Book a free consultation for a recommendation.</p><div class="hero-cta"><a class="btn btn-cyan" onclick="goTo('contact')">Get Free Consultation</a></div></div>
+  </div></section>
+</div>
+
+<!-- ================= CONTACT ================= -->
+<div class="page" id="page-contact">
+  <section class="page-hero"><div class="container">
+    <div class="breadcrumb reveal">Home / Contact</div>
+    <span class="eyebrow reveal">Let's talk</span>
+    <h1 class="mt-16 reveal">Let's build your website.</h1>
+  </div></section>
+  <section class="section-tight"><div class="container contact-grid">
+    <div class="reveal">
+      <div class="contact-item"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 6l8 7 8-7"/></svg></div><div><h4>Email</h4><a href="mailto:hello@createadot.com">hello@createadot.com</a></div></div>
+      <div class="contact-item"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 2 .6 3a2 2 0 01-.5 2L8 10a16 16 0 006 6l1.3-1.2a2 2 0 012-.5c1 .3 2 .5 3 .6a2 2 0 011.7 2.1z"/></svg></div><div><h4>Phone</h4><a href="tel:+8801000000000">+880 10 000 00000</a></div></div>
+      <div class="contact-item"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg></div><div><h4>WhatsApp</h4><a href="#">Message us on WhatsApp</a></div></div>
+      <div class="contact-item"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/></svg></div><div><h4>Office</h4><p>Banani, Dhaka, Bangladesh</p></div></div>
+      <div class="contact-item"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><div><h4>Business Hours</h4><p>Sat–Thu, 10:00 AM – 7:00 PM (GMT+6)</p></div></div>
+      <div class="map-placeholder mt-24">Google Map — Banani, Dhaka</div>
+    </div>
+    <div class="form-card reveal">
+      <h3 style="font-size:19px;">Request a free consultation</h3>
+      <p style="margin-top:6px; color:var(--text-soft); font-size:13.5px;">We'll reply within one business day.</p>
+      <form class="mt-24" onsubmit="fakeSubmit(event)">
+        <div class="form-row"><div class="field"><label>Full name</label><input type="text" required placeholder="Your name"></div><div class="field"><label>Email</label><input type="email" required placeholder="you@company.com"></div></div>
+        <div class="form-row"><div class="field"><label>Phone / WhatsApp</label><input type="tel" placeholder="+880"></div><div class="field"><label>Budget range</label><select><option>৳20,000–৳35,000</option><option>৳35,000–৳50,000</option><option>৳50,000+</option><option>Not sure yet</option></select></div></div>
+        <div class="field"><label>Service needed</label><select><option>Web Design</option><option>WordPress Development</option><option>Branding</option><option>SEO</option><option>Google Ads</option><option>UI/UX Design</option><option>Website Maintenance</option></select></div>
+        <div class="field"><label>Tell us about your project</label><textarea rows="4" placeholder="What are you trying to achieve?"></textarea></div>
+        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+      </form>
+    </div>
+  </div></section>
+</div>
+
+</main>
+
+<footer><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand" onclick="goTo('home')"><svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M27 8.5C24.6 5.6 20.9 4 17 4 9.8 4 4 9.8 4 17s5.8 13 13 13c3.9 0 7.6-1.6 10-4.5" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><circle cx="24" cy="17" r="4" fill="#2563EB"/></svg>Create A Dot</div>
+      <p>From one dot to digital success. A premium agency for web design, branding, SEO and growth marketing.</p>
+    </div>
+    <div class="footer-col"><h4>Company</h4><a onclick="goTo('about')">About</a><a onclick="goTo('projects')">Projects</a><a onclick="goTo('pricing')">Pricing</a><a onclick="goTo('contact')">Contact</a></div>
+    <div class="footer-col"><h4>Services</h4><a onclick="goTo('services')">Web Design</a><a onclick="goTo('services')">WordPress</a><a onclick="goTo('services')">Branding</a><a onclick="goTo('services')">SEO</a></div>
+    <div class="footer-col"><h4>Contact</h4><a href="mailto:hello@createadot.com">hello@createadot.com</a><a href="tel:+8801000000000">+880 10 000 00000</a><a onclick="goTo('contact')">Book a call</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Create A Dot. All rights reserved.</span><span>createadot.com · Dhaka, Bangladesh</span></div>
+</div></footer>
+
+<script>
+function goTo(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active', a.dataset.page===name));
+  document.getElementById('navLinks').classList.remove('open');
+  window.scrollTo({top:0, behavior:'instant'});
+  revealCheck();
+}
+document.getElementById('navToggle').addEventListener('click', ()=>{
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.getElementById('themeToggle').addEventListener('click', ()=>{
+  document.documentElement.classList.toggle('dark');
+});
+function toggleFaq(btn){
+  const item = btn.parentElement;
+  const ans = item.querySelector('.faq-a');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(o=>{ if(o!==item){ o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight=null; } });
+  item.classList.toggle('open', !isOpen);
+  ans.style.maxHeight = !isOpen ? ans.scrollHeight+'px' : null;
+}
+function filterProjects(btn, cat){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#projectGrid .project-card').forEach(card=>{
+    card.style.display = (cat==='all' || card.dataset.cat===cat) ? '' : 'none';
+  });
+}
+function fakeSubmit(e){
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type="submit"]');
+  const original = btn.textContent;
+  btn.textContent = "Sent — we'll reply within a day";
+  btn.disabled = true;
+  e.target.reset();
+  setTimeout(()=>{ btn.textContent = original; btn.disabled = false; }, 3000);
+}
+function revealCheck(){
+  document.querySelectorAll('.page.active .reveal').forEach(el=>el.classList.add('in'));
+}
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); } });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+revealCheck();
+</script>
+</body>
+</html>
