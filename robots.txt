@@ -2,4 +2,4 @@ User-agent: *
 
 Allow: /
 
-Sitemap: https://ehsajal11.github.io/Create-A-Dot/sitemap.xml
+Sitemap: https://createadot.com/sitemap.xml
