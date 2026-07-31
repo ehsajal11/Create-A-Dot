@@ -45,8 +45,33 @@ html.dark{
   --shadow-lg: 0 24px 60px rgba(0,0,0,.5);
 }
 
-html.dark .brand-mark {
-  stroke: #ffffff;  /* White in dark theme */
+
+.dark-logo {
+  display: none;
+}
+.light-logo {
+  display: block;
+}
+
+.logo {
+  width: 100%;
+  max-width: 160px; /* Limits maximum desktop size */
+  height: auto;     /* Maintains original aspect ratio */
+}
+
+html.dark .light-logo {
+  display: none;  /* White in dark theme */
+}
+
+html.dark .dark-logo {
+  display: block;
+}
+
+
+@media (max-width: 450px) {
+  .logo {
+    max-width: 110px; /* Shrinks logo on mobile devices */
+  }
 }
 
 *,*::before,*::after{ box-sizing:border-box; }
